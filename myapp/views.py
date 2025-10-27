@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-# from django.core.mail import send_mail
-# from django.conf import settings
+ from django.core.mail import send_mail
+ from django.conf import settings
 from django.contrib import messages
 
 def index(request):
@@ -22,13 +22,13 @@ Project Brief:
         recipient_list = ['your_email@gmail.com']  # Replace with your receiving email
         
         try:
-            # send_mail(
-            #     subject,
-            #     message,
-            #     settings.DEFAULT_FROM_EMAIL,
-            #     recipient_list,
-            #     fail_silently=False,
-            # )
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                recipient_list,
+                fail_silently=False,
+            )
             # Add a success message
             messages.success(request, "Thank you! Your request has been sent successfully.")
         except Exception as e:
