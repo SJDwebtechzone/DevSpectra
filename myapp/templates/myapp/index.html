@@ -1,0 +1,149 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Devspectra — Web Development Agency</title>
+<link rel="icon" href="{% static 'myapp/images/Devspectra1.png' %}" type="image/png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="{% static 'myapp/images/Devspectra1.png' %}" alt="Devspectra Logo">
+        <div class="overlay-text">Web • Mobile • Cloud</div>
+      </div>
+
+      <nav id="site-nav" class="site-nav">
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="site-nav">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</button>
+              <a class="btn header-quote" href="#contact">Get a Quote</a>
+
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">Trusted by startups & enterprises</div>
+        <h1>Pixel-perfect websites and fast web apps — built to scale</h1>
+        <p class="lead">We design and develop modern digital products: responsive websites, progressive web apps (PWA),
+          and cloud-native solutions that convert visitors into customers.</p>
+
+        <div class="cta-row">
+          <a class="btn" href="#contact" style="margin-top:0">Start a Project</a>
+          <a class="see-portfolio" style="padding:10px 14px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:white"
+            href="#portfolio">See Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="service">
+        <div style="font-size:20px;font-weight:700">Custom Web Development</div>
+        <p>Create fast, accessible, and maintainable web apps tailored to your business needs.</p>
+      </div>
+      <div class="service">
+        <div style="font-size:20px;font-weight:700">E-commerce</div>
+        <p>Scalable stores with easy product management and secure payments.</p>
+      </div>
+      <div class="service">
+        <div style="font-size:20px;font-weight:700">UI/UX & Branding</div>
+        <p>Design systems, brand identity, and conversion-focused interfaces.</p>
+      </div>
+      <div class="service">
+        <div style="font-size:20px;font-weight:700">Digital Marketing</div>
+        <p>SEO, content marketing, and social media strategies to grow your online presence.</p>
+      </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+      <h2 style="margin:0">Selected projects</h2>
+      <div class="grid" style="margin-top:16px">
+        <div class="project">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop"
+            alt="Project 1">
+          <div style="margin-top:8px;font-weight:700">SaaS Landing — Velocity</div>
+          <div class="muted" style="font-size:13px">Landing, auth, billing integration</div>
+        </div>
+        <div class="project">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"
+            alt="Project 2">
+          <div style="margin-top:8px;font-weight:700">Marketplace — Bazaar</div>
+          <div class="muted" style="font-size:13px">Multi-vendor store with analytics</div>
+        </div>
+        <div class="project">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop"
+            alt="Project 3">
+          <div style="margin-top:8px;font-weight:700">Corporate Website — AstraCorp</div>
+          <div class="muted" style="font-size:13px">Brand site and careers portal</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <form class="hero-card" method="post" action="">
+    {% csrf_token %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div style="margin-bottom:12px; color:#7c3aed; font-weight:700;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div style="font-weight:700;margin-bottom:8px">Start your project</div>
+    <div class="field"><label>Name</label><input name="name" placeholder="Your full name"></div>
+    <div class="field"><label>Email</label><input name="email" placeholder="Your Email"></div>
+    <div class="field"><label>Budget</label>
+        <select name="budget">
+            <option>Rs.2999</option>
+            <option>Rs.3k-Rs.5k</option>
+            <option>>Rs.10k+</option>
+        </select>
+    </div>
+    <div class="field"><label>Project brief</label>
+        <textarea name="brief" placeholder="Describe your project (goals, timeline)"></textarea>
+    </div>
+  <button class="btn" type="submit">Send request</button>
+  </form>
+
+
+      <aside class="info">
+        <div style="font-weight:700">Contact</div>
+        <div class="muted" style="margin-top:6px">Devspectra • Chennai, India</div>
+        <div style="margin-top:12px"><strong style="display:block">Phone</strong><span class="muted">+91 96009
+            41222</span></div>
+        <div style="margin-top:12px"><strong style="display:block">Services</strong><span class="muted">•Design •
+            Development • Cloud</span></div>
+      </aside>
+    </section>
+
+    <footer>
+      <div>© <strong>Devspectra</strong> — Built with care.</div>
+      <div class="muted">Terms • Privacy • Site map</div>
+    </footer>
+  </div>
+  <script src="{% static 'myapp/js/main.js' %}"></script>
+</body>
+
+</html>
