@@ -1,3 +1,5 @@
+
+console.log("Main JS loaded successfully");
 document.addEventListener('DOMContentLoaded', function () {
   const btn = document.querySelector('.hamburger');
   const nav = document.getElementById('site-nav');
@@ -28,3 +30,26 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Escape') closeNav();
   });
 });
+
+
+  // Check if the URL has the success section in it
+
+  // Check if the user is on the success section
+
+  // If the current URL contains #success (after successful submission)
+
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("JS running…");
+
+  const messages = document.querySelectorAll(".django-message");
+  console.log("Found messages:", messages);
+
+  if (messages.length > 0) {
+    messages.forEach(msg => {
+      console.log("Message text:", msg.textContent.trim());
+    });
+  } else {
+    console.log("No messages found in DOM.");
+  }
+});
+

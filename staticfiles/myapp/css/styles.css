@@ -40,9 +40,9 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 90%;
       margin: 0 auto;
-      padding: 32px
+      padding: 2px
     }
 
     header {
@@ -94,27 +94,37 @@
       display: flex;
       gap: 18px;
       align-items: center
+
     }
 
     nav a {
-      color: white;
+  
+color: white;
+
+display: inline-block;
       text-decoration: none;
       padding: 8px;
       border-radius: 8px;
       margin-top: 40px;
       position: relative;
       font-size: large;
+      transition: color 0.3s ease;
     }
-    .rowdies-bold {
+    nav a:hover {
+  color:  #7c3aed !important; /* same as #7c3aed */
+  background: transparent;
+  
+}
+    /* .rowdies-bold {
   font-family: "Rowdies", sans-serif;
   font-weight: 2000px;
   font-style: normal;
-}
-
+} */
+/* 
     nav a:hover {
       color: white;
       background: var(--transparent);
-    }
+    } */
     
 /* Hover effect: glowing underline */
 nav a::after {
@@ -124,25 +134,34 @@ nav a::after {
   bottom: 0;
   width: 0;
   height: 3px; /* underline thickness */
-  background: #7c3aed; /* underline color */
-  box-shadow: 0 0 8px #7c3aed, 0 0 16px #7c3aed; /* glowing effect */
+  /* background: #7c3aed; underline color */
+  /* box-shadow: 0 0 8px #7c3aed, 0 0 16px #7c3aed; glowing effect */
   border-radius: 2px;
   transition: width 0.3s ease;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
 }
+
+  
+
 
 nav a:hover::after {
   width: 50%; /* full underline on hover */
+  
 }
-nav a:hover {
-  color: white;
-}
+/* --- other styles above --- */
 
-    nav a.btn:hover {
-      opacity: 0.85;
-      background: var(--accent);
+/* Final nav hover color fix */
+
+
+
+   
+    /* nav a.btn:hover {
+      opacity: 0.85; */
+      /* background: var(--accent); */
       /* keep gradient, not glass */
-      color: white;
-    }
+      /* color: white;
+    } */
 
     .btn {
       display: inline-block;
@@ -162,17 +181,20 @@ nav a:hover {
 
     .hero {
       display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 30px;
-      align-items: center;
-      margin-top: 28px
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      margin-top: 28px;
+      max-width: 100%;
+      padding: 0 60px;
+      margin-bottom: 120px;
     }
 
     .hero-card {
       background: var(--card);
       padding: 36px;
       border-radius: 18px;
-      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6)
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
     }
 
     .eyebrow {
@@ -197,7 +219,63 @@ nav a:hover {
       gap: 12px
     }
 
-    .services {
+    /* Carousel styles */
+    .hero-carousel {
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+  position: relative;
+  padding: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-card,
+.hero-carousel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+.carousel-track {
+  display: flex;
+  width: 300%;
+  animation: slide 12s infinite;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  background: var(--glass);
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.carousel-slide img {
+  width: 100%;
+  max-height: 580px; /* or whatever height matches your hero-card */
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+
+
+/* Simple sliding animation */
+@keyframes slide {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-100%); }
+  66% { transform: translateX(-200%); }
+  100% { transform: translateX(0); }
+}
+
+/* carousel ends*/
+     .services {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
@@ -246,7 +324,9 @@ nav a:hover {
     .contact {
       display: flex;
       gap: 18px;
-      margin-top: 36px
+      margin-top: 36px;
+      max-width: 70%;
+      margin-left: 30px;
     }
 
     .contact form {
@@ -460,3 +540,7 @@ select option {
     .hamburger[aria-expanded="true"] .bar:nth-child(3) {
       transform: translateY(-6px) rotate(-45deg);
     }
+    .recent-projects {
+  margin-top: 48px;
+  display: block;
+}

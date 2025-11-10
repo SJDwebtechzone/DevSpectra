@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://devspectra.in/sitemap.xml
