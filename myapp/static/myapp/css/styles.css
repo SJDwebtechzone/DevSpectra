@@ -40,9 +40,9 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 90%;
       margin: 0 auto;
-      padding: 32px
+      padding: 2px
     }
 
     header {
@@ -94,27 +94,37 @@
       display: flex;
       gap: 18px;
       align-items: center
+
     }
 
     nav a {
-      color: white;
+  
+color: white;
+
+display: inline-block;
       text-decoration: none;
       padding: 8px;
       border-radius: 8px;
       margin-top: 40px;
       position: relative;
       font-size: large;
+      transition: color 0.3s ease;
     }
-    .rowdies-bold {
+    nav a:hover {
+  color:  #7c3aed !important; /* same as #7c3aed */
+  background: transparent;
+  
+}
+    /* .rowdies-bold {
   font-family: "Rowdies", sans-serif;
   font-weight: 2000px;
   font-style: normal;
-}
-
+} */
+/* 
     nav a:hover {
       color: white;
       background: var(--transparent);
-    }
+    } */
     
 /* Hover effect: glowing underline */
 nav a::after {
@@ -124,25 +134,34 @@ nav a::after {
   bottom: 0;
   width: 0;
   height: 3px; /* underline thickness */
-  background: #7c3aed; /* underline color */
-  box-shadow: 0 0 8px #7c3aed, 0 0 16px #7c3aed; /* glowing effect */
+  /* background: #7c3aed; underline color */
+  /* box-shadow: 0 0 8px #7c3aed, 0 0 16px #7c3aed; glowing effect */
   border-radius: 2px;
   transition: width 0.3s ease;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
 }
+
+  
+
 
 nav a:hover::after {
   width: 50%; /* full underline on hover */
+  
 }
-nav a:hover {
-  color: white;
-}
+/* --- other styles above --- */
 
-    nav a.btn:hover {
-      opacity: 0.85;
-      background: var(--accent);
+/* Final nav hover color fix */
+
+
+
+   
+    /* nav a.btn:hover {
+      opacity: 0.85; */
+      /* background: var(--accent); */
       /* keep gradient, not glass */
-      color: white;
-    }
+      /* color: white;
+    } */
 
     .btn {
       display: inline-block;
@@ -159,20 +178,46 @@ nav a:hover {
     .btn:hover {
       opacity: 0.85;
     }
+.hamburger {
+  display: none; /* shown via media query */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer;
+  z-index: 60;
+}
+
+.hamburger .bar {
+  width: 20px;
+  height: 2px;
+  background: white;
+  margin: 3px 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
 
     .hero {
       display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 30px;
-      align-items: center;
-      margin-top: 28px
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      margin-top: 28px;
+      max-width: 100%;
+      padding: 0 60px;
+      margin-bottom: 120px;
     }
 
     .hero-card {
       background: var(--card);
       padding: 36px;
       border-radius: 18px;
-      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6)
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
     }
 
     .eyebrow {
@@ -197,18 +242,103 @@ nav a:hover {
       gap: 12px
     }
 
-    .services {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 30px
-    }
+    /* Carousel styles */
+    .hero-carousel {
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+  position: relative;
+  padding: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-card,
+.hero-carousel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-    .service {
-      background: var(--card);
-      padding: 18px;
-      border-radius: 12px
-    }
+
+
+.carousel-track {
+  display: flex;
+  width: 300%;
+  animation: slide 20s infinite;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  background: var(--glass);
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.carousel-slide img {
+  width: 100%;
+  max-height: 580px; /* or whatever height matches your hero-card */
+  object-fit:contain;
+  border-radius: 18px;
+}
+
+
+
+/* Simple sliding animation */
+@keyframes slide {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-100%); }
+  66% { transform: translateX(-200%); }
+  100% { transform: translateX(0); }
+}
+
+/* carousel ends*/
+    .services {
+  margin-top: 40px;
+  text-align: left;
+}
+
+/* .section-title {
+  
+  font-weight: 800;
+  color: white; 
+  margin-bottom: 40px;
+ letter-spacing: 1px;
+} */
+.section-title {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-size: 23px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  
+  gap: 18px;
+}
+
+.service {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 12px;
+  min-height: 180px;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+}
 
     .service h3 {
       margin: 8px 0 6px
@@ -238,15 +368,19 @@ nav a:hover {
 
     .project img {
       width: 100%;
-      height: 150px;
-      object-fit: cover;
+      height: 250px;
+      object-fit: fill;
       border-radius: 8px
     }
 
     .contact {
       display: flex;
       gap: 18px;
-      margin-top: 36px
+      margin-top: 100px;
+     
+      max-width: 100%; /* Remove 80% restriction */
+  padding: 0 40px; /* optional – gives breathing space from browser edge */
+     
     }
 
     .contact form {
@@ -257,7 +391,9 @@ nav a:hover {
     }
 
     .contact .info {
-      width: 320px;
+       flex: 1; /* allow equal width for both sides */
+  max-width: 420px; /* optional: limit if you want */
+     
       padding: 18px;
       border-radius: 12px;
       background: var(--panel)
@@ -302,161 +438,132 @@ select option {
       gap: 12px
     }
 
-    @media (max-width:980px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-      /* ensure hamburger is visible and site-nav toggles correctly */
-      .hamburger { display: flex !important; opacity: 1; }
-      nav.site-nav.open { display: flex; }
+    @media (max-width: 980px) {
+  /* layout */
+  .hero { grid-template-columns: 1fr; gap: 28px; padding: 0 20px; margin-bottom: 60px; }
+  .container { max-width: 100%; padding: 0 12px; }
 
-      /* shrink brand/logo so header isn't huge on mobile */
+  /* header */
+  .hamburger { display: flex; }
+  nav.site-nav { display: none; }
+   nav.site-nav.open { display: flex; flex-direction: column; }
   .brand img { width: 88px; height: 88px; }
+  .brand .overlay-text { bottom: 6px; font-size: 12px; }
+  .site-nav.open {
+  position: absolute;
+  top: 64px;
+  right: 12px;
+  z-index: 55;
+  background: rgba(8,12,20,0.95);
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+.site-nav.open {
+  display: flex;
+  flex-direction: column;
+}
 
-      /* move the overlay text (Web • Mobile • Cloud) slightly lower on mobile */
-      .brand .overlay-text {
-        bottom: 6px;
-        font-size: 12px;
-      }
+/* keep header elements in normal flow and ensure visible */
+header {
+  display: flex;
+  align-items: center;   /* vertically center brand + controls */
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 64px;
+  position: relative;
+  padding: 8px 12px;
+  overflow: visible;     /* avoid clipping the logo */
+}
 
-      /* ensure header has a reasonable height */
-      header { min-height: 64px; }
+/* brand sizing and layout */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;        /* don't let brand shrink away */
+  z-index: 40;
+}
+.brand img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  display: block;
+}
 
-      /* ensure "Get a Quote" doesn't overlap the hamburger */
-      /* place the header Get a Quote button below the header (under hamburger) on mobile */
-      .header-quote {
-        margin-right: 0;
-        margin-top: 0;
-        position: absolute;
-        top: calc(64px + 12px); /* below header */
-        right: 12px;
-        padding: 0.45rem 0.9rem; /* reduced padding */
-        font-size: 14px; /* smaller text */
-        border-radius: 18px;
-        z-index: 45;
-      }
+/* header action flows below on very small screens but remains visible */
+.header-quote {
+  position: static;      /* keep it in flow so it remains visible */
+  margin: 0 0 0 8px;
+  z-index: 30;
+  flex: 0 0 auto;
+}
 
-  
-      nav.site-nav { display: none; }
+/* hamburger stays clickable and does not cover brand */
+.hamburger {
+  display: flex;
+  position: relative;
+  right: 0;
+  top: 0;
+  z-index: 50;
+  margin-left: 8px;
+}
+  /* header-quote moved into normal flow under header */
+  /* .header-quote {
+    position: static;
+    margin-left: 12px;
+    margin-top: 8px;
+    padding: 0.45rem 0.9rem;
+    font-size: 14px;
+    border-radius: 18px;
+    z-index: 10;
+  } */
 
+  /* nav dropdown when open */
+.site-nav.open {
+  position: absolute;
+  right: 12px;
+  top: calc(100% + 8px);
+  width: auto;
+  max-width: calc(100% - 24px);
+}
 
-      .services {
-        grid-template-columns: repeat(2, 1fr)
-      }
+  /* CTA / hero */
+  .cta-row { gap: 10px; }
+  .cta-row .btn, .cta-row .see-portfolio {
+    flex: 1 1 auto;
+    width: auto;
+    padding: 0.5rem 0.75rem;
+    font-size: 14px;
+  }
 
-      /* Place CTA buttons on the same row on mobile and force them to share space */
-      .cta-row {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important; /* keep them on the same row */
-        gap: 8px !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-      }
-      .cta-row .btn { order: 1 !important; }
-      .cta-row .see-portfolio { order: 2 !important; }
-      /* give each CTA roughly half the width so they sit side-by-side */
-      .cta-row .btn, .cta-row .see-portfolio {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        white-space: nowrap !important;
-        box-sizing: border-box !important;
-        flex: 0 0 calc(50% - 4px) !important; /* two columns with small gap */
-        padding: 0.5rem 0.75rem !important; /* slightly reduced padding */
-        font-size: 14px !important;
-      }
-      /* if the screen is very narrow, allow wrapping as fallback */
-      @media (max-width:420px) {
-        .cta-row { flex-wrap: wrap !important; }
-        .cta-row .btn, .cta-row .see-portfolio { flex: 0 0 100% !important; }
-      }
+  /* services / grids */
+  .services .service-grid, .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .service { min-height: 140px; padding: 14px; }
 
-      .grid {
-        grid-template-columns: repeat(2, 1fr)
-      }
+  /* carousel & hero sizing on mobile */
+  .hero-carousel { height: 220px; padding: 12px; border-radius: 14px; }
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    max-height: none;
+  }
 
-      .contact {
-        flex-direction: column
-      }
+  /* contact stacks */
+  .contact { flex-direction: column; gap: 16px; padding: 0 12px; }
+  .contact form, .contact .info { width: 100%; max-width: none; }
 
-      /* hide only the site-nav on small screens; hamburger will toggle it */
-      nav.site-nav {
-        display: none;
-      }
+  /* very small screens */
+  @media (max-width: 420px) {
+    .services .service-grid, .grid { grid-template-columns: 1fr; }
+    .cta-row { flex-direction: column; }
+    .hero-carousel { height: 180px; }
+    .brand img { width: 72px; height: 72px; }
+    .brand .overlay-text {
+  font-size: 10px;
+  bottom: 4px;
     }
-
-    @media (max-width:520px) {
-      .services {
-        grid-template-columns: 1fr
-      }
-
-      .grid {
-        grid-template-columns: 1fr
-      }
-    }
-
-    .muted {
-      color: var(--muted)
-    }
-
-    .pill {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--glass);
-      font-weight: 600
-    }
-    .hamburger {
-      /* hidden by default (desktop); mobile media query will set display:flex */
-      position: absolute;
-      right: 12px;
-      top: 12px;
-      width: 44px;
-      height: 44px;
-      padding: 8px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.04);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 60;
-    }
-
-    .hamburger .bar {
-      width: 20px;
-      height: 2px;
-      background: #fff;
-      margin: 3px 0;
-      transition: transform 0.25s ease, opacity 0.25s ease;
-      transform-origin: center;
-    }
-
-    /* when open, show nav as a small dropdown panel */
-    .site-nav.open {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      position: absolute;
-      right: 12px;
-      top: 64px;
-      background: rgba(8,12,20,0.95);
-      padding: 10px 12px;
-      border-radius: 8px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-      z-index: 55;
-    }
-
-    /* transform hamburger into an X when aria-expanded is true */
-    .hamburger[aria-expanded="true"] .bar:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-    .hamburger[aria-expanded="true"] .bar:nth-child(2) {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-    .hamburger[aria-expanded="true"] .bar:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
+  }
+}

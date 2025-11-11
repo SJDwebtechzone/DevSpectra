@@ -14,7 +14,11 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'django.contrib.sitemaps',  # For human-friendly number formatting
 ]
 
 MIDDLEWARE = [
@@ -123,9 +128,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [ BASE_DIR /'myapp'/ 'static' ]   # where you put your CSS/JS/images during development
+STATICFILES_DIRS = [BASE_DIR / "static"]  # where you put your CSS/JS/images during development
 # For production:
-STATIC_ROOT = BASE_DIR / 'staticfiles'       # used with `collectstatic`
+STATIC_ROOT = BASE_DIR / "staticfiles"      # used with `collectstatic`
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
@@ -141,8 +146,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'        # Gmail SMTP server
 EMAIL_USE_TLS = True                  # Use TLS (secure)
 EMAIL_PORT = 587                      # TLS port
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
   # Use App Password if 2FA is enabled
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

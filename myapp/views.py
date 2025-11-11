@@ -19,7 +19,7 @@ Budget: {budget}
 Project Brief:
 {brief}
 """
-        recipient_list = ['your_email@gmail.com']  # Replace with your receiving email
+        recipient_list = ['connectwithdevspectra@gmail.com']  # Replace with your receiving email
         
         try:
             send_mail(
@@ -35,7 +35,8 @@ Project Brief:
             messages.error(request, f"Oops! Something went wrong: {e}")
         
         # Redirect to the same page (GET) to prevent resubmission
-        return redirect('index')  # Make sure 'index' is the name of your URL pattern
+        return redirect('/?submitted=true')
+  # Make sure 'index' is the name of your URL pattern
 
     # For GET request, just render the template
     return render(request, "myapp/index.html")
