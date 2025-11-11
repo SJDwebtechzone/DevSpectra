@@ -36,7 +36,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = False
 SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-key')
 
-ALLOWED_HOSTS = ['devspectra.in', 'www.devspectra.in', '72.60.222.174']
+ALLOWED_HOSTS = ['devspectra.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
