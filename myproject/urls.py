@@ -20,6 +20,7 @@ from django.contrib.sitemaps.views import sitemap
 from myapp.sitemaps import StaticViewSitemap
 from django.conf import settings
 from django.conf.urls.static import static
+from myapp.views import robots_txt
 
 
 sitemaps = {  # ✅ Must be a dictionary, not a function
@@ -29,7 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myapp.urls')),  # Include URLs from myapp
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-
+path("robots.txt", robots_txt),
 ]
 if settings.DEBUG:
      urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.http import HttpResponse
 
 def index(request):
     if request.method == "POST":
@@ -40,3 +41,12 @@ Project Brief:
 
     # For GET request, just render the template
     return render(request, "myapp/index.html")
+
+
+def robots_txt(request):
+    content = (
+        "User-agent: *\n"
+        "Disallow:\n"
+        "Sitemap: https://devspectra.in/sitemap.xml"
+    )
+    return HttpResponse(content, content_type="text/plain")
