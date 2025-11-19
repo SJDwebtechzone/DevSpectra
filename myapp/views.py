@@ -4,13 +4,15 @@ from .forms import CareerForm, ProjectRequestForm
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.conf import settings
 
-# Homepage view
+
+
 def index(request):
     if request.method == "POST":
         form = ProjectRequestForm(request.POST)
+
         if form.is_valid():
-            # Process the project request form (send email or save)
             name = form.cleaned_data["name"]
             email = form.cleaned_data["email"]
             budget = form.cleaned_data["budget"]
@@ -24,22 +26,31 @@ Budget: {budget}
 Project Brief:
 {brief}
 """
+            sender = f"{name} <{settings.EMAIL_HOST_USER}>"
             try:
                 email_msg = EmailMessage(
                     subject,
                     message,
-                    from_email='priyajass33@gmail.com',  # Your email
+                    from_email=sender,
                     to=['connectwithdevspectra@gmail.com'],
                 )
                 email_msg.send()
-                success = True
+
+                # ✅ Add Success Message
+                messages.success(request, "Your project request has been sent successfully!")
+
             except:
-                success = False
+                # ❌ Email failed
+                messages.error(request, "Something went wrong. Please try again.")
+
+            # MUST redirect so message appears
+            return redirect("index")
+
     else:
         form = ProjectRequestForm()
-        success = False
 
-    return render(request, "myapp/index.html", {"form": form, "success": success})
+    return render(request, "myapp/index.html", {"form": form})
+
 
 
 # Career apply page
