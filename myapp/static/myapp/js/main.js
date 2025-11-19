@@ -1,40 +1,43 @@
-document.addEventListener('DOMContentLoaded', function () {
-  // === NAV TOGGLE ===
+document.addEventListener('DOMContentLoaded', () => {
   const btn = document.querySelector('.hamburger');
   const nav = document.querySelector('#site-nav');
-  if (btn && nav) {
-    function closeNav() {
-      btn.setAttribute('aria-expanded', 'false');
+
+  function toggleNav() {
+    const isOpen = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+    document.documentElement.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  btn.addEventListener('click', toggleNav);
+
+  // Close nav on click outside
+  document.addEventListener('click', (e) => {
+    if (!nav.classList.contains('open')) return;
+    if (e.target === btn || btn.contains(e.target) || nav.contains(e.target)) return;
+    nav.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.documentElement.style.overflow = '';
+  });
+
+  // Close nav on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
       nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
       document.documentElement.style.overflow = '';
     }
-    function openNav() {
-      btn.setAttribute('aria-expanded', 'true');
-      nav.classList.add('open');
-      document.documentElement.style.overflow = 'hidden';
+  });
+
+  // Close nav if resizing to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980 && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.documentElement.style.overflow = '';
     }
+  });
+});
 
-    btn.addEventListener('click', function () {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      expanded ? closeNav() : openNav();
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!nav.classList.contains('open')) return;
-      if (e.target === btn || btn.contains(e.target) || nav.contains(e.target)) return;
-      closeNav();
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeNav();
-    });
-
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 980 && nav.classList.contains('open')) {
-        closeNav();
-      }
-    });
-  }
 
   // === FORCE SCROLL TO TOP ON RELOAD ===
   if ('scrollRestoration' in history) {
@@ -58,4 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
   //     });
   //   }, 4000);
   // }
+
+document.getElementById('resumeInput').addEventListener('change', function() {
+  const file = this.files[0];
+  if (file && file.type !== "application/pdf") {
+    alert("Please select a PDF file.");
+    this.value = ""; // clear the invalid file
+  }
 });

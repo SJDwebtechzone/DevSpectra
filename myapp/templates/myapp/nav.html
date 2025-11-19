@@ -1,0 +1,52 @@
+<!-- {% load static %}
+<header>
+  <div class="brand">
+    <img src="{% static 'myapp/images/Devspectra1.png' %}" alt="Devspectra Logo">
+    <div class="overlay-text">Web • Mobile • Cloud</div>
+  </div>
+
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+ 
+  <nav id="site-nav" class="site-nav">
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#">Career</a>
+        <a href="#contact">Contact</a>
+      </nav>
+       <a class="btn header-quote" href="#contact">Get a Quote</a>
+</header> -->
+{% load static %}
+<header class="header">
+  <div class="container">
+
+    <!-- Logo -->
+    <div class="brand">
+      <img src="{% static 'myapp/images/Devspectra1.png' %}" alt="Devspectra Logo">
+      <div class="overlay-text">Web • Mobile • Cloud</div>
+    </div>
+
+    <!-- Hamburger -->
+    <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="site-nav" class="site-nav">
+      <a href="{% url 'index' %}#services">Services</a>
+      <a href="{% url 'index' %}#portfolio">Portfolio</a>
+      <a href="{% url 'career_apply' %}">Career</a>
+      <a href="{% url 'index' %}#contact">Contact</a>
+    </nav>
+     
+    <!-- Button -->
+    <a class="btn header-quote" href="#contact">Get a Quote</a>
+
+  </div>
+</header>

@@ -1,48 +1,74 @@
-from django.shortcuts import render, redirect
-from django.core.mail import send_mail
-from django.conf import settings
-from django.contrib import messages
+from django.shortcuts import render
+from django.core.mail import EmailMessage
+from .forms import CareerForm, ProjectRequestForm
 from django.http import HttpResponse
+from django.contrib import messages
+from django.shortcuts import redirect
 
+# Homepage view
 def index(request):
     if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        budget = request.POST.get("budget")
-        brief = request.POST.get("brief")
-        
-        # Prepare email content
-        subject = f"New Project Request from {name}"
-        message = f"""
+        form = ProjectRequestForm(request.POST)
+        if form.is_valid():
+            # Process the project request form (send email or save)
+            name = form.cleaned_data["name"]
+            email = form.cleaned_data["email"]
+            budget = form.cleaned_data["budget"]
+            brief = form.cleaned_data["brief"]
+
+            subject = f"New Project Request from {name}"
+            message = f"""
 Name: {name}
 Email: {email}
 Budget: {budget}
 Project Brief:
 {brief}
 """
-        recipient_list = ['connectwithdevspectra@gmail.com']  # Replace with your receiving email
-        
-        try:
-            send_mail(
-                subject,
-                message,
-                settings.DEFAULT_FROM_EMAIL,
-                recipient_list,
-                fail_silently=False,
+            try:
+                email_msg = EmailMessage(
+                    subject,
+                    message,
+                    from_email='priyajass33@gmail.com',  # Your email
+                    to=['connectwithdevspectra@gmail.com'],
+                )
+                email_msg.send()
+                success = True
+            except:
+                success = False
+    else:
+        form = ProjectRequestForm()
+        success = False
+
+    return render(request, "myapp/index.html", {"form": form, "success": success})
+
+
+# Career apply page
+def career_apply(request):
+    success = False
+    if request.method == 'POST':
+        form = CareerForm(request.POST, request.FILES)
+        if form.is_valid():
+            resume = form.cleaned_data['resume']
+
+            email = EmailMessage(
+                subject="New Career Application",
+                body="A new candidate has applied. Please find the resume attached.",
+                from_email='priyajass33@gmail.com',
+                to=['connectwithdevspectra@gmail.com'],
             )
-            # Add a success message
-            messages.success(request, "Thank you! Your request has been sent successfully.")
-        except Exception as e:
-            messages.error(request, f"Oops! Something went wrong: {e}")
-        
-        # Redirect to the same page (GET) to prevent resubmission
-        return redirect('/?submitted=true')
-  # Make sure 'index' is the name of your URL pattern
+            email.attach(resume.name, resume.read(), resume.content_type)
+            email.send()
 
-    # For GET request, just render the template
-    return render(request, "myapp/index.html")
+            messages.success(request, "Your CV has been successfully submitted!")  # one-time success message
+            return redirect('career_apply')  # Redirect to the same page to prevent reload popup
+
+    else:
+        form = CareerForm()
+
+    return render(request, 'myapp/career.html', {'form': form, 'success': success})
 
 
+# Robots.txt
 def robots_txt(request):
     content = (
         "User-agent: *\n"

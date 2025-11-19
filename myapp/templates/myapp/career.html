@@ -1,0 +1,200 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+/* === Career Section === */
+.career-wrapper {
+  max-width: 80%;
+  margin: 120px auto;
+  padding: 20px;
+  font-size: 20px;
+  line-height: 1.7;
+  background: var(--card, #f9f9f9);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.career-heading-line {
+  font-size: clamp(22px, 5vw, 28px);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.career-heading-line span {
+  font-weight: 300;
+  font-size: 1rem;
+  display: block;
+  margin-top: 8px;
+}
+
+/* === Form Styling === */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+form input[type="file"],
+form input[type="text"],
+form input[type="email"],
+form button {
+  width: 50%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  align-items: center;
+  margin: 0 auto;         /* centers the button horizontally */
+  display: block; 
+  margin-top: 10px;        /* ensures margin auto works */
+}
+
+form button {
+  background: #7c3aed;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background:#7c3aed;
+}
+
+/* === Popup Styling === */
+.popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #1a1a1a;
+  padding: 30px 40px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  color: #fff;
+  width: 90%;
+  max-width: 400px;
+}
+
+.popup-content h2 {
+  color: #28a745;
+  margin-bottom: 15px;
+}
+
+.popup-content button {
+  padding: 10px 20px;
+  background-color: #5a35ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.popup-content button:hover {
+  background-color: #4826cc;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+  .career-wrapper {
+    max-width: 95%;
+    margin: 60px auto;
+    font-size: 16px;
+    padding: 15px;
+  }
+
+  .career-heading-line {
+    font-size: 22px;
+  }
+
+  .popup-content {
+    padding: 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .career-wrapper {
+    font-size: 14px;
+    padding: 12px;
+  }
+  form button {
+    width: 100%;
+  }
+  .career-heading-line {
+    font-size: 18px;
+  }
+
+  .popup-content {
+    padding: 15px;
+    font-size: 13px;
+  }
+}
+</style>
+
+<!-- === Career Section === -->
+<div class="career-wrapper">
+  <div class="career-heading-line color-primary">
+    Open for Web Developers:
+    <span>
+      We are looking for candidates with basic knowledge in MERN Stack, Django, and API Integration.
+      If you are interested to join with us, upload your CV below.
+    </span>
+  </div>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {{ form.resume.label_tag }}
+  
+
+  <div class="form-row">
+<input type="file" name="resume"  id="resumeInput"  accept=".pdf" required>
+    <button type="submit">Submit</button>
+  </div>
+</form>
+
+
+<!-- === Success Popup === -->
+{% if messages %}
+  <div class="popup" id="successPopup">
+    <div class="popup-content">
+      {% for message in messages %}
+        <h2>Thank You!</h2>
+        <p>{{ message }}</p>
+      {% endfor %}
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+{% endif %}
+
+<script>
+function closePopup() {
+  document.getElementById('successPopup').style.display = 'none';
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('successPopup');
+  if (popup) {
+    setTimeout(() => {
+      popup.style.display = 'none';
+    }, 3000);
+  }
+});
+</script>
+
+{% endblock %}

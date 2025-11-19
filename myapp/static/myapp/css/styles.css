@@ -44,22 +44,65 @@
       margin: 0 auto;
       padding: 2px
     }
-
+/* 
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 12px 0;
-      position: relative; /* keep hamburger inside header */
-    }
+      position: relative; keep hamburger inside header
+    } */
 
-    .brand {
+    /* .brand {
       display: flex;
       align-items: center;
       gap: 12px;
       position: relative;
-    }
+    } */
+     .header {
+    width: 100%;
+    padding-top: 20px;
+}
+     .brand {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    display: inline-block;
+}
+.header .container {
+    max-width: 1200px;     /* keeps everything centered */
+    margin: 0 auto;        /* centers the container */
+    padding: 0 20px;       /* space on left & right */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+/* Nav in center */
+.site-nav {
+    display: flex;
+    gap: 30px;
+}
 
+.site-nav a {
+    color: white;
+    text-decoration: none;
+     margin-left: 25px;        /* pushes nav toward the right side */
+  margin-right: 20px;       /* adds spacing before Get Quote */
+}
+
+/* Quote button */
+.header-quote {
+    background: #7d3cff;
+    padding: 10px 25px;
+    border-radius: 30px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.hamburger {
+    display: none; /* visible only in mobile; add responsive rules later */
+}
     .brand img {
       background: none;
       /* solid background behind logo */
@@ -178,19 +221,20 @@ nav a:hover::after {
     .btn:hover {
       opacity: 0.85;
     }
+/* Hamburger button */
 .hamburger {
-  display: none; /* shown via media query */
+  display: none; /* show via media query */
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 44px;
-  height: 44px;
-  padding: 8px;
-  border-radius: 8px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 1000;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.04);
-  cursor: pointer;
-  z-index: 60;
+  border-radius: 8px;
+  margin-top: 40px;
 }
 
 .hamburger .bar {
@@ -198,8 +242,7 @@ nav a:hover::after {
   height: 2px;
   background: white;
   margin: 3px 0;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-  transform-origin: center;
+  transition: 0.3s;
 }
 
     .hero {
@@ -429,141 +472,205 @@ select option {
       min-height: 120px
     }
 
-    footer {
-      margin-top: 48px;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px
-    }
+ footer {
+    margin-top: 48px;
+    color: var(--muted);
+    display: flex;
+    justify-content: center;   /* center items horizontally */
+    align-items: center;       /* vertically centered */
+    flex-direction: column;    /* stack items */
+    gap: 12px;
+    text-align: center;
+}
 
-    @media (max-width: 980px) {
-  /* layout */
-  .hero { grid-template-columns: 1fr; gap: 28px; padding: 0 20px; margin-bottom: 60px; }
-  .container { max-width: 100%; padding: 0 12px; }
+/* Mobile responsiveness */
+/* General mobile adjustments */
+/* ==================== MOBILE RESPONSIVE ==================== */
 
-  /* header */
+/* Small devices (up to 980px) */
+@media (max-width: 980px) {
+
   .hamburger { display: flex; }
-  nav.site-nav { display: none; }
-   nav.site-nav.open { display: flex; flex-direction: column; }
-  .brand img { width: 88px; height: 88px; }
-  .brand .overlay-text { bottom: 6px; font-size: 12px; }
-  .site-nav.open {
-  position: absolute;
-  top: 64px;
-  right: 12px;
-  z-index: 55;
-  background: rgba(8,12,20,0.95);
-  padding: 10px 12px;
-  border-radius: 8px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-}
-.site-nav.open {
-  display: flex;
-  flex-direction: column;
-}
 
-/* keep header elements in normal flow and ensure visible */
-header {
-  display: flex;
-  align-items: center;   /* vertically center brand + controls */
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 64px;
-  position: relative;
-  padding: 8px 12px;
-  overflow: visible;     /* avoid clipping the logo */
-}
+  .site-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    margin-top: 40px;
+    height: 50%;
+    width: 250px;
+    background: rgba(8,12,20,0.95);
+    flex-direction: column;
+    padding: 60px 20px;
+    gap: 20px;
+    transition: right 0.3s ease;
+    z-index: 90;
+  }
 
-/* brand sizing and layout */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 0 0 auto;        /* don't let brand shrink away */
-  z-index: 40;
-}
-.brand img {
-  width: 88px;
-  height: 88px;
-  object-fit: contain;
-  display: block;
-}
+  .site-nav.open { right: 0; }
 
-/* header action flows below on very small screens but remains visible */
-.header-quote {
-  position: static;      /* keep it in flow so it remains visible */
-  margin: 0 0 0 8px;
-  z-index: 30;
-  flex: 0 0 auto;
-}
+  .site-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
 
-/* hamburger stays clickable and does not cover brand */
-.hamburger {
-  display: flex;
-  position: relative;
-  right: 0;
-  top: 0;
-  z-index: 50;
-  margin-left: 8px;
-}
-  /* header-quote moved into normal flow under header */
-  /* .header-quote {
-    position: static;
-    margin-left: 12px;
-    margin-top: 8px;
-    padding: 0.45rem 0.9rem;
-    font-size: 14px;
-    border-radius: 18px;
-    z-index: 10;
-  } */
-
-  /* nav dropdown when open */
-.site-nav.open {
-  position: absolute;
-  right: 12px;
-  top: calc(100% + 8px);
-  width: auto;
-  max-width: calc(100% - 24px);
-}
-
-  /* CTA / hero */
-  .cta-row { gap: 10px; }
-  .cta-row .btn, .cta-row .see-portfolio {
-    flex: 1 1 auto;
-    width: auto;
-    padding: 0.5rem 0.75rem;
+  .header-quote {
+    padding: 8px 20px;
     font-size: 14px;
   }
 
-  /* services / grids */
-  .services .service-grid, .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .service { min-height: 140px; padding: 14px; }
+  /* HERO SECTION */
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 16px;
+    margin-bottom: 60px;
+  }
 
-  /* carousel & hero sizing on mobile */
-  .hero-carousel { height: 220px; padding: 12px; border-radius: 14px; }
-  .carousel-slide img {
+  .hero-carousel {
+    height: 250px;
+    padding: 16px;
+  }
+
+  /* CTA ROW */
+  .cta-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
-    max-height: none;
+    text-align: center;
   }
 
-  /* contact stacks */
-  .contact { flex-direction: column; gap: 16px; padding: 0 12px; }
-  .contact form, .contact .info { width: 100%; max-width: none; }
+  /* SERVICES GRID */
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 
-  /* very small screens */
+  /* PORTFOLIO GRID */
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* CONTACT SECTION */
+  .contact {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 16px;
+    margin-top: 60px;
+  }
+  .contact .info,
+  .contact form {
+    max-width: 100%;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 24px 16px;
+    gap: 8px;
+  }
+
+  /* Extra small devices (up to 420px) */
   @media (max-width: 420px) {
-    .services .service-grid, .grid { grid-template-columns: 1fr; }
-    .cta-row { flex-direction: column; }
-    .hero-carousel { height: 180px; }
-    .brand img { width: 72px; height: 72px; }
-    .brand .overlay-text {
-  font-size: 10px;
-  bottom: 4px;
+    .brand img {
+      width: 140px;
+      height: 140px;
     }
+    .brand .overlay-text {
+      font-size: 12px;
+      bottom: 20px;
+    }
+
+    /* HERO SECTION */
+    .hero-carousel {
+      height: 180px;
+      padding: 12px;
+    }
+    .hero-card {
+      padding: 24px;
+    }
+
+    /* SERVICES & PORTFOLIO */
+    .service-grid,
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* BUTTONS */
+    .btn {
+      padding: 0.5rem 1rem;
+      font-size: 14px;
+    }
+
+    /* NAV LINKS */
+    .site-nav a {
+      font-size: 14px;
+    }
+
+    /* CONTACT FORM */
+    .contact form,
+    .contact .info {
+      padding: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+      gap: 6px;
+    }
+  } /* closes 420px */
+
+} /* closes 980px */
+
+/* Optional: smooth transition for nav open/close */
+.site-nav,
+.hamburger .bar {
+  transition: all 0.3s ease;
+}
+
+/* WhatsApp floating button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  z-index: 9999;
+  cursor: pointer;
+  animation: float 2s ease-in-out infinite;
+}
+
+.whatsapp-float img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Mobile view adjustments */
+@media (max-width: 480px) {
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
+    animation: float 1.8s ease-in-out infinite;
+  }
+  .whatsapp-float img {
+    width: 60px;
+    height: 60px;
   }
 }

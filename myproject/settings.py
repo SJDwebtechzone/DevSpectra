@@ -33,11 +33,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 # DEBUG = True
 # ALLOWED_HOSTS = []
-DEBUG = False
+DEBUG = True
 SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-key')
 
-ALLOWED_HOSTS = ['devspectra.in', 'www.devspectra.in']
-# allowed_hosts=["localhost", "127.0.0.1"]
+# ALLOWED_HOSTS = ['devspectra.in', 'www.devspectra.in']
+ALLOWED_HOSTS=["localhost", "127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [

@@ -1,29 +1,10 @@
+{% extends "myapp/base.html" %}
 {% load static %}
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="keywords" content="web development, web design, SEO, digital marketing, DevSpectra, WordPress, MERN, Chennai">
-<meta name="robots" content="index, follow">
-<meta name="keywords" content="contact devspectra, website enquiry, get quote, web development chennai, digital marketing support">
-<meta property="og:title" content="Devspectra | Best Web Development Company in Chennai">
-<meta property="og:description" content="Build your dream website with Devspectra – experts in web design, WordPress, SEO, and digital marketing solutions. Explore our portfolio and services.">
-<meta property="og:url" content="https://devspectra.in/">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://devspectra.in/static/myapp/images/Devspectra1.png">
-<meta property="og:locale" content="en_IN">
-  <meta name="description" content="Devspectra provides professional web development, design, and digital solutions to help businesses grow online.">
- <title>DevSpectra | Web Development & Digital Solutions</title>
-  <link rel="icon" href="{% static 'myapp/images/Devspectra1.png' %}" type="image/png">
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
+<head> -->
+ 
     <!-- <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -64,84 +45,19 @@
   }
 }
 </script> -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "DevSpectra",
-  "url": "https://devspectra.in/",
-  "logo": "https://devspectra.in/static/myapp/images/Devspectra1.png",
-  "description": "Devspectra is a creative web development and digital marketing company in Chennai, offering web design, WordPress, SEO, and branding solutions.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Valasaravakkam",
-    "addressLocality": "Chennai",
-    "addressRegion": "Tamil Nadu",
-    "postalCode": "600087",
-    "addressCountry": "India"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+91-9600941222",
-    "email": "connect@devspectra.in",
-    "contactType": "Customer Service",
-    "areaServed": "IN",
-    "availableLanguage": ["English", "Tamil"]
-  },
-  "sameAs": [
-    "https://www.facebook.com/devspectra",
-    "https://www.instagram.com/devspectra",
-    "https://www.linkedin.com/company/devspectra"
-  ],
-  "department": [
-    {
-      "@type": "Service",
-      "name": "Web Development",
-      "serviceType": "Website Design and Development",
-      "areaServed": "IN",
-      "description": "We create fast, responsive, and SEO-friendly websites tailored to your business goals."
-    },
-    {
-      "@type": "Service",
-      "name": "WordPress Development",
-      "serviceType": "CMS Website Solutions",
-      "areaServed": "IN",
-      "description": "We build custom WordPress websites with modern design, performance, and security."
-    },
-    {
-      "@type": "Service",
-      "name": "SEO and Digital Marketing",
-      "serviceType": "Online Promotion and Visibility",
-      "areaServed": "IN",
-      "description": "Our SEO and digital marketing services help your business reach a wider audience."
-    }
-  ],
-  "hasPart": {
-    "@type": "CreativeWork",
-    "name": "Portfolio",
-    "description": "A showcase of our web design and digital marketing projects for various clients across industries.",
-    "url": "https://devspectra.in/#portfolio"
-  }
-}
-</script>
 
 
-</head>
+<!-- </head> -->
 
-<body>
-  <div class="container">
-    <header>
+<!-- <body>
+  <div class="container"> -->
+    <!-- <header>
       <div class="brand">
         <img src="{% static 'myapp/images/Devspectra1.png' %}" alt="Devspectra Logo">
         <div class="overlay-text">Web • Mobile • Cloud</div>
       </div>
 
-      <nav id="site-nav" class="site-nav">
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#">Career</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    
       <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -149,8 +65,8 @@
       </button>
       <a class="btn header-quote" href="#contact">Get a Quote</a>
 
-    </header>
-
+    </header> -->
+{% block content %}
     <section class="hero">
       <div class="hero-card">
         <div class="eyebrow">Trusted by startups & enterprises</div>
@@ -273,37 +189,58 @@
     </section>
 
 
-    <section id="contact" class="contact">
       
-      <form class="herocard" method="post" action="">
-        {% csrf_token %}
+      <section id="contact" class="contact">
+  <form class="herocard" method="post" action="">
+    {% csrf_token %}
 
-        {% if messages %}
-        {% for message in messages %}
+    {% if messages %}
+      {% for message in messages %}
         <div class="django-message" style="margin-bottom:12px; color:#7c3aed; font-weight:700;">
           {{ message }}
         </div>
-        {% endfor %}
-        {% endif %}
+      {% endfor %}
+    {% endif %}
 
+    <div style="font-weight:700;margin-bottom:8px">Start your project</div>
 
-        <div style="font-weight:700;margin-bottom:8px">Start your project</div>
-        <div class="field"><label>Name</label><input name="name" placeholder="Your full name"></div>
-        <div class="field"><label>Email</label><input name="email" placeholder="Your Email"></div>
-        <div class="field"><label>Budget</label>
-          <select name="budget">
-            <option>Rs.2999</option>
-            <option>Rs.3k-Rs.5k</option>
-            <option>>Rs.10k+</option>
-          </select>
-        </div>
-        <div class="field"><label>Project brief</label>
-          <textarea name="brief" placeholder="Describe your project (goals, timeline)"></textarea>
-        </div>
-        <button class="btn" type="submit">Send request</button>
-      </form>
+    <div class="field">
+      <label>Name</label>
+      <input name="name" value="{{ form.data.name }}" placeholder="Your full name">
+      <div class="error">{{ form.name.errors }}</div>
+    </div>
 
+    <div class="field">
+      <label>Email</label>
+      <input name="email" value="{{ form.data.email }}" placeholder="Your Email">
+      <div class="error">{{ form.email.errors }}</div>
+    </div>
 
+    <div class="field">
+      <label>Mobile Number</label>
+<input type="text" name="number" maxlength="10" placeholder="Your Mobile Number">
+  <div class="error">{{ form.number.errors }}</div>
+    </div>
+
+    <div class="field">
+      <label>Budget</label>
+      <select name="budget">
+        <option value="">Select</option>
+        <option {% if form.data.budget == "Rs.2999" %}selected{% endif %}>Rs.2999</option>
+        <option {% if form.data.budget == "Rs.3k-Rs.5k" %}selected{% endif %}>Rs.3k-Rs.5k</option>
+        <option {% if form.data.budget == ">Rs.10k+" %}selected{% endif %}>>Rs.10k+</option>
+      </select>
+      <div class="error">{{ form.budget.errors }}</div>
+    </div>
+
+    <div class="field">
+      <label>Project brief</label>
+      <textarea name="brief" placeholder="Describe your project (goals, timeline)">{{ form.data.brief }}</textarea>
+      <div class="error">{{ form.brief.errors }}</div>
+    </div>
+
+    <button class="btn" type="submit">Send request</button>
+  </form>
       <aside class="info">
         <div style="font-weight:700">Contact</div>
         <div class="muted" style="margin-top:6px">DevSpectra • Chennai, India</div>
@@ -315,14 +252,12 @@
             Development • Cloud</span></div>
             
       </aside>
-    </section>
+</section>
 
-    <footer>
-      <div>© <strong>DevSpectra</strong> — Built with care.</div>
-      <div class="muted">Terms • Privacy • Site map</div>
-    </footer>
-  </div>
-  <script src="{% static 'myapp/js/main.js' %}"></script>
-</body>
 
-</html>
+
+  {% endblock %}
+
+   
+  <!-- </div> -->
+  <!-- <script src="{% static 'myapp/js/main.js' %}"></script> -->
