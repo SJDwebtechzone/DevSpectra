@@ -9,6 +9,7 @@ from django.conf import settings
 
 
 def index(request):
+    scroll = False
     if request.method == "POST":
         form = ProjectRequestForm(request.POST)
 
@@ -46,11 +47,14 @@ Project Brief:
             # MUST redirect so message appears
             return redirect("index")
 
+        else:
+        #form = ProjectRequestForm()
+            scroll=True
+
     else:
         form = ProjectRequestForm()
 
-    return render(request, "myapp/index.html", {"form": form})
-
+    return render(request, "myapp/index.html", {"form": form, "scroll": scroll})
 
 
 # Career apply page

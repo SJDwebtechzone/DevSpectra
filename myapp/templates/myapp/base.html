@@ -106,6 +106,11 @@
   <a href="https://wa.me/919600941222" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
     <img src="{% static 'myapp/images/w.png' %}" alt="WhatsApp Chat">
 </a>
-
+{% if scroll %}
+<script>
+    // Auto-scroll to project form when form has errors
+    document.location.hash = "#project-form";
+</script>
+{% endif %}
 </body>
 </html>
