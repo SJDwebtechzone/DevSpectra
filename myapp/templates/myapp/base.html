@@ -103,14 +103,28 @@
     <!-- FOOTER -->
     {% include 'myapp/footer.html' %}
   <script src="{% static 'myapp/js/main.js' %}"></script>
-  <a href="https://wa.me/919600941222" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-    <img src="{% static 'myapp/images/w.png' %}" alt="WhatsApp Chat">
+ 
+<a href="https://web.whatsapp.com/send?phone=919600941222&amp;text=" target="_blank" class="whatsapp-float">
+
+  <span class="chaty-icon channel-icon-Whatsapp">
+    <span class="chaty-svg">
+    <img src="{% static 'myapp/images/w.png' %}" alt="WhatsApp">
+    </span>
+  </span>
+  
 </a>
+
 {% if scroll %}
 <script>
     // Auto-scroll to project form when form has errors
     document.location.hash = "#project-form";
 </script>
 {% endif %}
+
+<!-- Chaty WhatsApp Widget (always load) -->
+<script id="pixel-chaty" async src="https://cdn.chaty.app/pixel.js?id=n3weQXqL"></script>
+
 </body>
 </html>
+
+

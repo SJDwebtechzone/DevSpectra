@@ -8,6 +8,7 @@ from django.conf import settings
 
 
 
+
 def index(request):
     scroll = False
     if request.method == "POST":
@@ -91,3 +92,6 @@ def robots_txt(request):
         "Sitemap: https://devspectra.in/sitemap.xml"
     )
     return HttpResponse(content, content_type="text/plain")
+
+
+
